@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>מרכז התנועות הקצרות של נווה 🌟</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Rubik:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Rubik', sans-serif; background: #f0f9ff; color: #0f172a; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px 10px; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .header h1 { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; color: #0284c7; }
+        .streak-card { background: #ffffff; border: 2px solid #bae6fd; border-radius: 16px; padding: 12px 24px; font-weight: 700; color: #0369a1; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 15px; width: 100%; max-width: 450px; }
+        .card { background: #ffffff; border-radius: 20px; padding: 20px; border: 2px solid #cbd5e1; text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px; transition: transform 0.15s; box-shadow: 0 6px 15px rgba(0,0,0,0.05); }
+        .card:active { transform: scale(0.97); }
+        .icon { font-size: 2.5rem; }
+        .card-title { font-size: 1.3rem; font-weight: 700; color: #0284c7; margin-bottom: 4px; }
+        .card-desc { font-size: 0.9rem; color: #64748b; }
+        .learn-card { border-color: #3b82f6; background: #eff6ff; }
+        .test-card { border-color: #10b981; background: #ecfdf5; }
+        .daily-card { border-color: #f59e0b; background: #fffbeb; }
+        .teacher-card { border-color: #8b5cf6; background: #f5f3ff; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>תנועות קצרות באנגלית 🔤</h1>
+        <p>Short Vowels Suite - נווה</p>
+    </div>
+    <div class="streak-card">🔥 רצף תרגול יומי: 3 ימים!</div>
+    <div class="grid">
+        <a href="learn.html" class="card learn-card">
+            <span class="icon">📘</span>
+            <div>
+                <div class="card-title">1. לומדים תנועות קצרות</div>
+                <div class="card-desc">תנועות גוף (TPR), צלילים ומילים קצרות</div>
+            </div>
+        </a>
+        <a href="test.html" class="card test-card">
+            <span class="icon">🎯</span>
+            <div>
+                <div class="card-title">2. מבחן 3 השלבים</div>
+                <div class="card-desc">אמריקאי, הקלדה עצמאית ואתגר מחברת</div>
+            </div>
+        </a>
+        <a href="daily.html" class="card daily-card">
+            <span class="icon">⚡</span>
+            <div>
+                <div class="card-title">3. אימון יומי קצר (2 דקות)</div>
+                <div class="card-desc">תרגול זיהוי צלילים וכתיבה מול עברית</div>
+            </div>
+        </a>
+        <a href="teacher.html" class="card teacher-card">
+            <span class="icon">👩‍🏫</span>
+            <div>
+                <div class="card-title">4. מדריך למורה בלייב</div>
+                <div class="card-desc">תנועות גוף, משחקי מילים ואביזרים</div>
+            </div>
+        </a>
+    </div>
+</body>
+</html>
