@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>אימון יומי - תנועות קצרות</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Rubik:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Rubik', sans-serif; background: #fffbeb; padding: 15px; color: #0f172a; display: flex; flex-direction: column; align-items: center; }
+        .back-nav { width: 100%; max-width: 500px; margin-bottom: 10px; }
+        .back-btn { text-decoration: none; color: #b45309; font-weight: 700; }
+        .mode-row { display: flex; gap: 8px; width: 100%; max-width: 500px; margin-bottom: 15px; }
+        .mode-btn { flex: 1; padding: 10px 6px; border: 2px solid #fcd34d; background: white; border-radius: 12px; font-weight: 700; color: #b45309; cursor: pointer; text-align: center; }
+        .mode-btn.active { background: #f59e0b; color: white; border-color: #f59e0b; }
+        .box { background: white; border-radius: 20px; padding: 20px; width: 100%; max-width: 500px; border: 2px solid #f59e0b; text-align: center; }
+        .prompt-display { font-family: 'Fredoka', sans-serif; font-size: 3rem; color: #0284c7; background: #e0f2fe; border-radius: 16px; padding: 18px; margin-bottom: 15px; direction: ltr; }
+        .type-box { width: 85%; padding: 12px; font-size: 1.4rem; font-weight: 700; text-align: center; border: 2px solid #f59e0b; border-radius: 12px; margin-bottom: 12px; direction: ltr; font-family: 'Fredoka', sans-serif; }
+        .action-btn { background: #10b981; color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="back-nav"><a href="index.html" class="back-btn">➡️ חזרה למרכז</a></div>
+    <div class="mode-row">
+        <button class="mode-btn active" onclick="switchMode('en2he')">זיהוי תנועות</button>
+        <button class="mode-btn" onclick="switchMode('he2en')">כתיבת תנועות</button>
+    </div>
+    <div class="box">
+        <div id="quizContainer"></div>
+    </div>
+
+    <script>
+        const vowels = [
+            { v: 'A a', sound: 'אַ (תפוח)', letter: 'a' },
+            { v: 'E e', sound: 'אֶ (שמיעה)', letter: 'e' },
+            { v: 'I i', sound: 'אִי (גירוד)', letter: 'i' },
+            { v: 'O o', sound: 'אוֹ (תמנון)', letter: 'o' },
+            { v: 'U u', sound: 'אַ (מטרייה)', letter: 'u' }
+        ];
+        let mode = 'en2he';
+        let idx = 0;
+
+        function switchMode(m) {
+            mode = m;
+            document.querySelectorAll('.mode-btn').forEach((b, i) => b.classList.toggle('active', (i === 0 && m === 'en2he') || (i === 1 && m === 'he2en')));
+            idx = 0;
+            renderCard();
+        }
+
+        function renderCard() {
+            const container = document.getElementById('quizContainer');
+            const item = vowels[idx];
+            if (mode === 'en2he') {
+                container.innerHTML = `
+                    <div class="prompt-display">${item.v}</div>
+                    <p style="font-weight:700; margin-bottom:15px; font-size:1.2rem; color:#b45309;">${item.sound}</p>
+                    <button class="action-btn" onclick="nextCard()">הבא ⬅️</button>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="prompt-display" style="direction:rtl; color:#b45309; background:#fffbeb;">${item.sound}</div>
+                    <input type="text" id="dailyInput" class="type-box" placeholder="כתוב את התנועה..." autofocus />
+                    <br>
+                    <button class="action-btn" onclick="checkTyped('${item.letter}')">בדוק תשובה ✨</button>
+                `;
+            }
+        }
+
+        function checkTyped(correct) {
+            const input = document.getElementById('dailyInput').value.trim();
+            if (input.toLowerCase() === correct.toLowerCase()) {
+                confetti({ particleCount: 40, spread: 50 });
+                setTimeout(nextCard, 1000);
+            } else {
+                alert('נסה שוב! התנועה הנכונה היא ' + correct);
+            }
+        }
+
+        function nextCard() {
+            idx = (idx + 1) % vowels.length;
+            renderCard();
+        }
+
+        switchMode('en2he');
+    </script>
+</body>
+</html>
